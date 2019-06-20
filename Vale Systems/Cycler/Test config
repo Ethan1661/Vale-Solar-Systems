@@ -1,0 +1,41 @@
+@Kopernicus:FOR[Tutora] {
+
+   Body
+   {
+       name = Tutora
+       Debug //We want to add some changes here.
+       {
+           exportMesh = false //Setting this to false means that no cache file is generated.
+           //Since a gasplanet has no solid surface, we don't need the cache file, as there is no PQS to store there.
+           update = true //We do want the planet to be updated though.
+       }
+       Template
+       {
+           name = Jool
+           //Besides picking a template there isn't anything else to do here. We don't need to remove anything else.
+       }
+       Properties
+       {
+           description = This stores the text that will be visible in-game in the info tab.
+           radius = 4000000 //This CfgValue stores the radius of the planet (average distance from surface to center), 6000km = 1 Jool radii. 4000km = 2/3 Jool radii.
+           geeASL = 0.63    //With geeASL you can define the gravitational acceleration at the surface, expressed in g's (IE the amount of times Earth's gravity. 9.81 m*s^-2 = 1g)
+       }
+       Orbit
+       {
+           semiMajorAxis = 5000000000 //Nothing too fancy. We basically clone Jool's orbit but with a different average distance.
+       }
+       Atmosphere //Let's access the atmosphere
+       {
+           ambientColor = 0.7,0.5,0.1,1 //Ambient color provides a slight tint to any craft inside the atmosphere, with the tint intensity increasing with depth
+           lightColor = 0.37,0.47,0.62,1 //Light color is somewhat strange, for some reason the lower the intensity of a color, the more prominent that color is.
+           //Pro tip: adjust lightColor in-game with KittopiaTech.
+       }
+       ScaledVersion //Gas planets are only the scaledspace mesh
+       {
+           Material //The Material subnode is where we actually alter the appearance of the ScaledSpace mesh
+           {
+               texture = Tutorial/PluginData/Tutora_c.dds //Here we assign a new texture to the sphere.
+           }
+       }
+   }
+}
